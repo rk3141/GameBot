@@ -1,0 +1,16 @@
+{
+  "name": "gamebot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gb.js",
+  "dependencies": {
+    "canvas": "^2.6.1",
+    "discord.js": "^12.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "npm gb.js"
+  },
+  "author": "Rishit Khandelwal",
+  "license": "MIT"
+}
