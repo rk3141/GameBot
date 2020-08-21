@@ -9,7 +9,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "npm gb.js"
+    "test": "npm gb.js",
+    "start": "node gb.js"
   },
   "author": "Rishit Khandelwal",
   "license": "MIT"
