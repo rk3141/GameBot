@@ -9,7 +9,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "npm gb.js",
+    "test": "nodemon gb.js",
     "start": "node gb.js"
   },
   "author": "Rishit Khandelwal",

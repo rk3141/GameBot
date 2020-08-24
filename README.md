@@ -1,2 +1,3 @@
 # GameBot
- My Discord
+## My Discord Bot
+GameBot (aka The DCoin Banker)
