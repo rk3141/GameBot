@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const Canvas = require('canvas');
+// const Canvas = require('canvas');
 const fs = require('fs');
 
 // Lottery
@@ -79,7 +79,11 @@ function buy(what,by,auth) {
 	let bank = JSON.parse(fs.readFileSync('lib/dcoin.dat.json').toString())
 
 	let amt = shop[what]
+	if (!amt) {
+		return -15
+	}
 
+	console.log("Found!")
 	let users = []
 	for (let user in bank) {
 		users.push(bank[user]['username'])
@@ -223,7 +227,7 @@ function buy(what,by,auth) {
 	}
 // Over
 
-const {token} = require('./lib/auth.json')
+const {token} = require('../auth.json')
 
 client.once('ready', () => {
 	console.log('Ready!');
@@ -301,7 +305,9 @@ client.on('message', async (message) => {
 			message.channel.send(shop())
 		}
 		if (content.startsWith('!buy ')) {
-			buy(content.slice(5,content.length),`<@!${message.author.id}>`,message.author.username)
+			if (buy(content.slice(5,content.length),`<@!${message.author.id}>`,message.author.username) == -15) {
+				message.channel.send("That doesn't exist")
+			}
 		}
 		if (content.startsWith('!min')) {
 			let x = myInventory(`<@!${message.author.id}>`)
