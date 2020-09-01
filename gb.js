@@ -303,6 +303,7 @@ client.on('guildMemberAdd', async member => {
 
 client.on('message', async (message) => {
 	if (!message.author.bot) {
+		let content = message.content;
 		
 		if (content == "!up") {
 			let uc = update_code();
@@ -312,7 +313,6 @@ client.on('message', async (message) => {
 				message.channel.send("Nothing to update. :cry:")
 			}
 		}
-		let content = message.content;
 		// console.log(message.author.username)
 		if (message.content.includes('<:squirky:742594858790682714>')) {
 			message.react('742594858790682714')
