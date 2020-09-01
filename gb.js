@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const {update_code} =  require('./updater.js');
+const gup =  require('./updater.js');
 const fs = require('fs');
 // Lottery
 function rand_num(to) {
@@ -306,10 +306,11 @@ client.on('message', async (message) => {
 		let content = message.content;
 		
 		if (content == "!up") {
-			let uc = update_code();
+			let uc = gup.update_code();
+			// console.log(gup)
 			if (uc == 1) {
 				message.channel.send("Code Updated! :)")
-			} else {
+			} else if (uc == -1) {
 				message.channel.send("Nothing to update. :cry:")
 			}
 		}

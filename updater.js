@@ -19,9 +19,14 @@ function update_code() {
 
 	if (commit != fs.readFileSync('.vc').toString() || (commit != fs.readFileSync('.vc').toString() && Number(fs.readFileSync('time.vc').toString()) >= time+86400)) {
 		fs.writeFileSync('time.vc',time)
-		exe("cd .. && git clone https://github.com/rishit-khandelwal/strops && echo Delete THIS Folder as the repo is updated").toString()
+		
+		exe("cd .. && git clone https://github.com/rishit-khandelwal/GameBot && echo Delete THIS Folder as the repo is updated").toString()
 		fs.renameSync('GameBot','GameBot - '+fs.readFileSync('..\\GameBot\\.vc').toString())
+		console.log("Updated!")
 		return 1
 	}
+	console.log("empty!")
 	return -1;
 }
+
+exports.update_code = update_code
