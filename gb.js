@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-// const Canvas = require('canvas');
+const {update_code} =  require('./updater.js');
 const fs = require('fs');
 // Lottery
 function rand_num(to) {
@@ -182,6 +182,7 @@ function buy(what,by,auth) {
 		}
 	}	
 
+
 	function sendmoney(from,to,amt,auth) {
 		let bank = JSON.parse(fs.readFileSync('lib/dcoin.dat.json').toString())
 
@@ -302,6 +303,15 @@ client.on('guildMemberAdd', async member => {
 
 client.on('message', async (message) => {
 	if (!message.author.bot) {
+		
+		if (content == "!up") {
+			let uc = update_code();
+			if (uc == 1) {
+				message.channel.send("Code Updated! :)")
+			} else {
+				message.channel.send("Nothing to update. :cry:")
+			}
+		}
 		let content = message.content;
 		// console.log(message.author.username)
 		if (message.content.includes('<:squirky:742594858790682714>')) {

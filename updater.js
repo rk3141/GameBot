@@ -21,5 +21,7 @@ function update_code() {
 		fs.writeFileSync('time.vc',time)
 		exe("cd .. && git clone https://github.com/rishit-khandelwal/strops && echo Delete THIS Folder as the repo is updated").toString()
 		fs.renameSync('GameBot','GameBot - '+fs.readFileSync('..\\GameBot\\.vc').toString())
+		return 1
 	}
+	return -1;
 }
