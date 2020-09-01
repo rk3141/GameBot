@@ -21,7 +21,6 @@ function update_code() {
 		fs.writeFileSync('time.vc',time)
 		console.log("Running updater!")
 		console.log(exe("cd .. && git clone https://github.com/rishit-khandelwal/GameBot && echo Delete THIS Folder as the repo is updated").toString())
-		console.log(__dirname)
 		fs.renameSync('../GameBot','../GameBot - '+commit)
 		console.log("Updated!")
 		return 1
