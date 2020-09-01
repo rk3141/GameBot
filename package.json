@@ -5,7 +5,8 @@
   "main": "gb.js",
   "dependencies": {
     "canvas": "^2.6.1",
-    "discord.js": "^12.2.0"
+    "discord.js": "^12.2.0",
+    "unirest": "^0.6.0"
   },
   "devDependencies": {},
   "scripts": {
@@ -15,4 +16,3 @@
   "author": "Rishit Khandelwal",
   "license": "MIT"
 }
-
