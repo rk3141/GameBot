@@ -2,10 +2,24 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 // const Canvas = require('canvas');
 const fs = require('fs');
-
 // Lottery
 function rand_num(to) {
-	return Math.floor( Math.random * to)
+	return Math.floor( Math.random() * to)
+}
+
+function submit_lottery(me,what) {
+	let locks = fs.readFileSync('bin.tmp').toString();
+	const Lottery = fs.readFileSync('lib/lottery._').toString()
+	if (!locks.includes(me)) {
+		if (what == Lottery) {
+			return 100;
+		} else {
+			fs.appendFileSync('bin.tmp',`${me}-${what}`)
+			return 0;
+		}
+	} else {
+		return -1;
+	}
 }
 
 function lc(l,w) {
@@ -383,12 +397,25 @@ client.on('message', async (message) => {
 				}
 			)
 		}
-		
+
+		if (content.startsWith("-pop ")) {
+			amt = content.slice(5,content.length)
+			let rc = submit_lottery(message.author.username,amt);
+			// console.log(`.${amt}.${Lottery}`,typeof(amt),typeof(Lottery))
+			if (rc == 100) {
+				message.channel.send(`${message.author.username}, you **won**!!`)
+			} else if (rc == 0) {
+				message.channel.send(`${message.author.username}, you didn't win... :cry:`)
+			} else {
+				message.channel.send(`${message.author.username}, NO spamming!`)
+			}
+		}
+		// console.log("Hi!")
 	}
 
 
 	const filter = (reaction,user) => {
-		return ['krishna', 'squirky'].includes(reaction.emoji.name) && user.id === message.author.id;
+		return ['krishna', 'squirky'].includes(reaction.emoji.name);
 	}
 	message.awaitReactions(filter, {max: 1000, time: 600000, errors: ['time']})
 		.then(
