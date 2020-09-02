@@ -1,6 +1,5 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const gup =  require('./updater.js');
 const fs = require('fs');
 // Lottery
 function rand_num(to) {
@@ -305,15 +304,6 @@ client.on('message', async (message) => {
 	if (!message.author.bot) {
 		let content = message.content;
 		
-		if (content == "!up") {
-			let uc = gup.update_code();
-			// console.log(gup)
-			if (uc == 1) {
-				message.channel.send("Code Updated! :)")
-			} else if (uc == -1) {
-				message.channel.send("Nothing to update. :cry:")
-			}
-		}
 		// console.log(message.author.username)
 		if (message.content.includes('<:squirky:742594858790682714>')) {
 			message.react('742594858790682714')
