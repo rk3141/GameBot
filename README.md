@@ -1,7 +1,3 @@
-# GameBot
-## My Discord Bot
-GameBot (aka The DCoin Banker)
+# Super simple bare minimum bot
 
-Please edit the values in `lib/dcoin.json` to use.
-
-To conduct lottery just place a number in `lottery._` .
+Super simple bot
