@@ -4,13 +4,14 @@ function update_code() {
 	const exe = require('child_process').execSync;
 
 	const unirest = require('unirest');
-	let commit;
+	let commit = fs.readFileSync('.vc').toString();
 	unirest.get("https://api.github.com/repos/rishit-khandelwal/GameBot/commits/HEAD")
 		.headers({"Accept": "application/vnd.github.v3+json", "User-Agent": "GameBot"})
 		.then(
 			(resp) =>
 			{
 				commit = resp['body']['commit']['message']
+				console.log(commit)
 			}
 		)
 
