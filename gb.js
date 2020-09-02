@@ -330,8 +330,11 @@ client.on('message', async (message) => {
 			message.channel.send(shop())
 		}
 		if (content.startsWith('!buy ')) {
-			if (buy(content.slice(5,content.length),`<@!${message.author.id}>`,message.author.username) == -15) {
+			let rc = buy(content.slice(5,content.length),`<@!${message.author.id}>`,message.author.username);
+			if (rc == -15) {
 				message.channel.send("That doesn't exist")
+			} else if(rc == 0) {
+				message.channel.send(`Ya bought ${content.slice(5,content.length)}`)
 			}
 		}
 		if (content.startsWith('!min')) {
@@ -388,7 +391,7 @@ client.on('message', async (message) => {
 				message.channel.send("Oh Come on! atleast tell me the amount")
 				return
 			}
-			amt = final[final.length-1]
+			try {amt = Number(final[final.length-1])} catch {message.channel.send("I think.. i need a number. :cry:")}
 			let fr = `<@!${ment[0]}>`
 			let to = `<@!${ment[1]}>`
 			console.log(fr,to,final)
