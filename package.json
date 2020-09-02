@@ -10,8 +10,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "nodemon gb.js",
-    "start": "node gb.js"
+    "test": "nodemon bot.js",
+    "start": "node bot.js"
   },
   "author": "Rishit Khandelwal",
   "license": "MIT"
