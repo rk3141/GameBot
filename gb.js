@@ -1,7 +1,9 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const fs = require('fs');
+
 // Lottery
+
 function rand_num(to) {
 	return Math.floor( Math.random() * to)
 }
