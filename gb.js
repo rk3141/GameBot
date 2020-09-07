@@ -218,12 +218,12 @@ function buy(what,by,auth) {
 
 	function isAmeAs(x,y) {
 		if (x.length != y.length) {
-			console.log(x.length,y.length)
+			// console.log(x.length,y.length)
 			return false
 		}
 		for (let i = 0; i < x.length ; i++) {
 			if (x[i] != y[i]) {
-				console.log(x[i],y[i])
+				// console.log(x[i],y[i])
 				return false
 			}
 		}
@@ -269,7 +269,7 @@ function buy(what,by,auth) {
 		let f = '';
 		let t = '';
 
-		console.log('DAB:',from,to)
+		// console.log('DAB:',from,to)
 
 		for (let b in bank) {
 			if (from == bank[b]['username']){
@@ -301,7 +301,7 @@ function buy(what,by,auth) {
 				return -1
 			}
 
-			console.log(auth,bank[f]['auth'])
+			// console.log(auth,bank[f]['auth'])
 			if (auth != bank[f]['auth']) {
 				return -10;
 			}
