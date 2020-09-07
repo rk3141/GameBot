@@ -1,11 +1,86 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const fs = require('fs');
+const {email,passc} = require("../auth.json")
+const nodemailer = require("nodemailer")
+let spamblock = [];
 
 // Lottery
+var transport = nodemailer.createTransport({
+  host: "smtp.gmail.com",
+  port: 2525,
+  auth: {
+    user: email,
+    pass: passc
+  }
+});
+
+function send_mail(to,sub,text) {
+    var mailOptions = {
+      from: `"Rishit" <${email}>`,
+      to: '${to}',
+      subject: sub,
+      text: text
+    };
+    
+    transport.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            return console.log(error);
+        }
+        console.log('Message sent: %s', info.messageId);
+    });
+}
 
 function rand_num(to) {
 	return Math.floor( Math.random() * to)
+}
+
+function sell_back(kaun,kya,kitna) {
+	let inventory = JSON.parse(
+		fs.readFileSync('lib/dcoin.dat.json').toString()
+	)
+
+	let l = 0;
+	let j = "";
+	for (let p in inventory) {
+		if (inventory[p]["auth"] == kaun) {
+			j = p
+			break;
+		}
+		l++
+	}
+	if (l == 3) {
+		return -1;
+	}
+
+	let flag = 0;
+	inventory[j]["inventory"].map(
+		(x) => {
+			if (x == kya) {
+				flag++;
+			}
+		}
+	)
+	if (flag == 0) {
+		return 1;
+	} else {
+		let newinv = []
+		let mappy = 0;
+		let retmt = 0
+		inventory[j]["inventory"].map(
+			(x) => {
+				if (mappy != kitna && x == kya) {
+					retmt += JSON.parse(fs.readFileSync("lib/shop.json").toString())[kya]
+					mappy++;
+				} else {
+					newinv.push(x)
+				}
+			}
+		)
+		inventory[j]["inventory"] = newinv
+		inventory[j]["amt"] += retmt
+		save(inventory)
+	}
 }
 
 function submit_lottery(me,what) {
@@ -303,10 +378,22 @@ client.on('guildMemberAdd', async member => {
 });
 
 client.on('message', async (message) => {
+	// if (message.content == "STOP.") {
+	// 	message.channel.send("lol")
+	// }
 	if (!message.author.bot) {
 		let content = message.content;
 		
-		// console.log(message.author.username)
+		if (content.includes("spam")) {
+			let i = 1
+			while (i++ < 0) {
+				message.channel.send("LOL")
+				i++;
+			}
+		}
+		if (content.includes("kick")) {
+			message.delete();
+		}
 		if (message.content.includes('<:squirky:742594858790682714>')) {
 			message.react('742594858790682714')
 		}
@@ -361,6 +448,16 @@ client.on('message', async (message) => {
 			}
 		}
 
+		if (content.startsWith("!cat "))  {
+			let params = content.slice(5,content.length).split(" ")
+			if (params.length != 2) {
+				message.channel.send(":rage:")
+			}
+			let kya = params[0]
+			let kitna = Number(params[1])
+			sell_back(message.author.username, kya, kitna)
+		}
+
 		if (content.startsWith("!sm ")) {
 			let i = 0;
 			let ment = []
@@ -403,6 +500,14 @@ client.on('message', async (message) => {
 				}
 			)
 		}
+
+        if (content.startsWith("!email ")) {
+            params = content.slice(7,content.length).spilit(" ");
+            to = params[0]
+            sub = params[1];
+            text = params.slice(2,params.length);
+            send_mail(to,sub,text)
+        }
 
 		if (content.startsWith("-pop ")) {
 			amt = content.slice(5,content.length)
