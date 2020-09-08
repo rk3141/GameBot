@@ -296,7 +296,7 @@ function buy(what,by,auth) {
 const {token} = require("./auth.json")
 
 client.once('ready', () => {
-	console.log('Ready!');
+	console.log('I am on.. yes go on Discord');
 });
 
 client.on('message', async (message) => {

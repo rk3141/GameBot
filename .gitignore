@@ -3,3 +3,4 @@ time.vc
 .vc
 *.txt
 auth.json
+.ipynb_checkpoints/
