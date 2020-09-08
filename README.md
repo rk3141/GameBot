@@ -1,7 +1,8 @@
 # GameBot
 ## My Discord Bot
-GameBot (aka The DCoin Banker)
+GameBot (aka The DCoin Banker) :- Docker Edition
 
-Please edit the values in `lib/dcoin.json` to use.
-
-To conduct lottery just place a number in `lottery._` .
+Run ```bash
+docker build -t gamebot:docker .
+docker run gamebot:docker
+```

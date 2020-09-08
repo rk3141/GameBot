@@ -2,3 +2,4 @@ node_modules/
 time.vc
 .vc
 *.txt
+auth.json

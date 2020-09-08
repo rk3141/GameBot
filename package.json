@@ -4,16 +4,14 @@
   "description": "",
   "main": "gb.js",
   "dependencies": {
-    "@types/node": "^14.6.4",
-    "canvas": "^2.6.1",
     "discord.js": "^12.2.0",
     "nodemailer": "^6.4.11",
     "unirest": "^0.6.0"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "nodemon gb.js",
-    "start": "node gb.js"
+    "test": "nodemon /app/gb.js",
+    "start": "node /app/gb.js"
   },
   "author": "Rishit Khandelwal",
   "license": "MIT"
