@@ -289,7 +289,7 @@ function buy(what,by,auth) {
 	}
 // Over
 
-const {token} = process.env.TOKEN
+const token = process.env.TOKEN
 
 client.once('ready', () => {
 	console.log('Ready!');
