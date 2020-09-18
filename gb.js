@@ -318,7 +318,7 @@ function buy(what,by,auth) {
 	}
 // Over
 
-const {token} = require('../auth.json')
+const {token} = process.env.TOKEN
 
 client.once('ready', () => {
 	console.log('Ready!');
