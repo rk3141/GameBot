@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const fs = require('fs');
+const { argv } = require('process');
 
 function rand_num(to) {
 	return Math.floor( Math.random() * to)
@@ -289,7 +290,7 @@ function buy(what,by,auth) {
 	}
 // Over
 
-const token = process.env.TOKEN
+const token = process.env.TOKEN || argv[2]
 
 client.once('ready', () => {
 	console.log('Ready!');
