@@ -20,11 +20,12 @@ jobs:
 
     steps:
     - shell: bash
+    - env:
+        TOKEN: ${{  secrets.TOKEN  }}
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-      env:
-        TOKEN: ${{  secrets.TOKEN  }}
+
     - run: npm install
     - run: npm start $TOKEN
