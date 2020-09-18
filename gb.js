@@ -1,35 +1,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const fs = require('fs');
-const {email,passc} = require("../auth.json")
-const nodemailer = require("nodemailer")
-let spamblock = [];
-
-// Lottery
-var transport = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 2525,
-  auth: {
-    user: email,
-    pass: passc
-  }
-});
-
-function send_mail(to,sub,text) {
-    var mailOptions = {
-      from: `"Rishit" <${email}>`,
-      to: '${to}',
-      subject: sub,
-      text: text
-    };
-    
-    transport.sendMail(mailOptions, (error, info) => {
-        if (error) {
-            return console.log(error);
-        }
-        console.log('Message sent: %s', info.messageId);
-    });
-}
 
 function rand_num(to) {
 	return Math.floor( Math.random() * to)
